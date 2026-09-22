@@ -1,7 +1,7 @@
-function [ Scorebest, Xbest,Convergence_curve]=plant_evaporation(Materials_no, Max_iter, lb,ub, dim,C3,C4,...
+function [ Scorebest, Xbest,Convergence_curve]=AOA(Materials_no, Max_iter, lb,ub, dim,C3,C4,...
                                               trainData,testData,trainlabel,testlabel)
 %function [Xbest, Scorebest,Convergence_curve] = AOA(Materials_no,Max_iter,fobj, dim,lb,ub,C3,C4)
-disp('plant_evaporation is now estimating the global optimum for your problem....')
+disp('AOA is now estimating the global optimum for your problem....')
 flag=0;
 if size(ub,1)==1%如果ub是一个单独的数
     ub=ones(dim,1)*ub;%创建一个dim*1的数组，数组里的每个数都为ub
@@ -106,10 +106,10 @@ xbest=[0 0 0 0 0 1 0 1 0];
         
 deltaX=Xnew; 
 for tt=1:size(deltaX,2)
- %  V型函数
- T_deltaX(tt)=0.64*abs(atan(deltaX(tt))*(i/(sqrt((1+deltaX(tt)*deltaX(tt))))));
+%  V型函数
+%  T_deltaX(tt)=0.64*abs(atan(deltaX(tt))*(i/(sqrt((1+deltaX(tt)*deltaX(tt))))));
 %  t1(x) = |arctan(x)| 函数
-%  T_deltaX(tt)=0.64*abs(atan(deltaX(tt)));
+ T_deltaX(tt)=0.64*abs(atan(deltaX(tt)));
 %  t2(x) = |x/√(1|+x*x) 函数
 %  T_deltaX(tt)=0.64*abs(i/(sqrt((1+deltaX(tt)*deltaX(tt)))));
  %T_deltaX(tt)=0.56*abs(atan(deltaX(tt))*(i/(sqrt((1+deltaX(tt)*deltaX(tt))))));

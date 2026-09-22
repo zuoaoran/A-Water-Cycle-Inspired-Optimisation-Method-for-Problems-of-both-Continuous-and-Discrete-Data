@@ -1,19 +1,15 @@
-% This function initialize the first population of search agents
-function Positions=initialization(SearchAgents_no,dim,ub,lb)
+%_________________________________________________________________________%
 
-Boundary_no= size(ub,2); % number of boundaries
+%This function randomly initializes the position of agents in the search space.
+function [X]=initialization(N,dim,up,down)
 
-% If the boundaries of all variables are equal and user enter a signle
-% number for both ub and lb
-if Boundary_no==1
-    Positions=rand(SearchAgents_no,dim).*(ub-lb)+lb;
+if size(up,1)==1
+    X=rand(N,dim).*(up-down)+down;
 end
-
-% If each variable has a different lb and ub
-if Boundary_no>1
+if size(up,1)>1
     for i=1:dim
-        ub_i=ub(i);
-        lb_i=lb(i);
-        Positions(:,i)=rand(SearchAgents_no,1).*(ub_i-lb_i)+lb_i;
+        high=up(i);low=down(i);
+        X(:,i)=rand(1,N).*(high-low)+low;
     end
+    X=double(int32(X));
 end
